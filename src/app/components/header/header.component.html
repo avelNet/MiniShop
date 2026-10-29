@@ -1,0 +1,10 @@
+<header class="header">
+  <a routerLink="/catalog" class="logo">🛍 MiniShop</a>
+  <nav class="nav">
+    <a routerLink="/catalog" routerLinkActive="active">Каталог</a>
+    <a routerLink="/cart" routerLinkActive="active">
+      Корзина
+      <span class="badge">{{ productService.getCartCount() }}</span>
+    </a>
+  </nav>
+</header>

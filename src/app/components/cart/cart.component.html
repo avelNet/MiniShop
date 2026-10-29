@@ -1,0 +1,39 @@
+<section class="cart">
+  <h1>Корзина</h1>
+
+  @if (items.length === 0) {
+    <div class="empty">
+      <p>Ваша корзина пуста</p>
+      <a routerLink="/catalog" class="btn">Перейти в каталог</a>
+    </div>
+  } @else {
+    <ul class="list">
+      @for (item of items; track item.product.id) {
+        <li class="row">
+          <img [src]="item.product.image" [alt]="item.product.name" />
+          <div class="info">
+            <h3>{{ item.product.name }}</h3>
+            <span class="unit">{{ productService.getFinalPrice(item.product) | number }} ₽ / шт.</span>
+          </div>
+          <div class="qty">
+            <button (click)="decrease(item)">−</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="increase(item)">+</button>
+          </div>
+          <span class="sum">
+            {{ productService.getFinalPrice(item.product) * item.quantity | number }} ₽
+          </span>
+          <button class="remove" (click)="remove(item)" title="Удалить">✕</button>
+        </li>
+      }
+    </ul>
+
+    <div class="summary">
+      <button class="clear" (click)="clear()">Очистить корзину</button>
+      <div class="total">
+        Итого ({{ productService.getCartCount() }} шт.):
+        <strong>{{ productService.getCartTotal() | number }} ₽</strong>
+      </div>
+    </div>
+  }
+</section>

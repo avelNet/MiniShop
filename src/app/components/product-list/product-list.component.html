@@ -1,0 +1,27 @@
+<section class="catalog">
+  <div class="toolbar">
+    <h1>Каталог</h1>
+    <input
+      type="text"
+      class="search"
+      placeholder="Поиск по названию..."
+      [(ngModel)]="searchText"
+    />
+  </div>
+
+  @if (searchText) {
+    <p class="hint">Найдено товаров: {{ filteredProducts.length }}</p>
+  }
+
+  <div class="grid">
+    @for (product of filteredProducts; track product.id) {
+      <app-product-card
+        [product]="product"
+        [inCart]="isInCart(product)"
+        (addToCart)="onAddToCart($event)"
+      />
+    } @empty {
+      <p class="empty">По запросу «{{ searchText }}» ничего не найдено 😔</p>
+    }
+  </div>
+</section>

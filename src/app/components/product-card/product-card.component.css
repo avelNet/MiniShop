@@ -1,0 +1,118 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+/* Товара нет в наличии — карточка полупрозрачная */
+.card.out-of-stock {
+  opacity: 0.5;
+  filter: grayscale(60%);
+}
+.image-wrap {
+  position: relative;
+}
+.image-wrap img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  background: #e5e7eb;
+  font-size: 56px;
+}
+.sale {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px;
+  gap: 8px;
+}
+.category {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.description {
+  margin: 0;
+  flex: 1;
+  color: #4b5563;
+  font-size: 14px;
+}
+.stock {
+  align-self: flex-start;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.stock-yes {
+  background: #dcfce7;
+  color: #166534;
+}
+.stock-no {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.current {
+  font-size: 20px;
+}
+.old {
+  font-size: 15px;
+}
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+/* Товар уже в корзине — кнопка меняет стиль */
+.btn.btn-in-cart {
+  background: #16a34a;
+}
+.btn.btn-in-cart:hover {
+  background: #15803d;
+}
+.btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

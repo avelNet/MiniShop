@@ -1,0 +1,51 @@
+<div class="card" [ngClass]="{ 'out-of-stock': !product.inStock }">
+  <div class="image-wrap">
+    @if (!imageFailed) {
+      <img [src]="product.image" [alt]="product.name" (error)="imageFailed = true" />
+    } @else {
+      <div class="placeholder">🛒</div>
+    }
+    @if (product.discount > 0) {
+      <span class="sale">−{{ product.discount }}%</span>
+    }
+  </div>
+
+  <div class="body">
+    <span class="category">{{ product.category }}</span>
+    <h3>{{ product.name }}</h3>
+    <p class="description">{{ product.description }}</p>
+
+    <span class="stock" [ngClass]="product.inStock ? 'stock-yes' : 'stock-no'">
+      {{ product.inStock ? 'В наличии' : 'Нет в наличии' }}
+    </span>
+
+    <div class="price">
+      <span
+        class="current"
+        [ngStyle]="product.discount > 0 ? { color: '#dc2626', 'font-weight': 'bold' } : {}"
+      >
+        {{ finalPrice | number }} ₽
+      </span>
+      @if (product.discount > 0) {
+        <span class="old" [ngStyle]="{ 'text-decoration': 'line-through', color: 'grey' }">
+          {{ product.price | number }} ₽
+        </span>
+      }
+    </div>
+
+    <button
+      class="btn"
+      [ngClass]="{ 'btn-in-cart': inCart }"
+      [disabled]="!product.inStock"
+      (click)="onBuy()"
+    >
+      @if (!product.inStock) {
+        Нет в наличии
+      } @else if (inCart) {
+        ✓ В корзине (ещё +1)
+      } @else {
+        В корзину
+      }
+    </button>
+  </div>
+</div>
